@@ -1,0 +1,26 @@
+.homeDiv {
+    background-color: #56BDEC;
+    color:white;
+    font-family:monospace;
+    text-align: center;
+    height: 96vh;
+    width: 98.5vw;
+}
+
+.custButton {
+    background-color: #AAD4EE;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-300px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.heading1 {
+    animation: slideInLeft 1s ease-in both;
+    font-size: 400%;
+}
