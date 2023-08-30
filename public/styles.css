@@ -7,8 +7,25 @@
     width: 98.5vw;
 }
 
-.custButton {
-    background-color: #AAD4EE;
+button {
+    background-color: white;
+    color: #AAD4EE;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 0.1em;
+    padding: 10px 30px;
+    border-color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    border-style: solid;
+}
+
+button:hover{
+    letter-spacing: 0.25em;
+    background: var(--clr);
+    color: white;
+    box-shadow: 0 0 35px var(--clr);
+    border-color: #AAD4EE;
 }
 
 @keyframes slideInLeft {
@@ -23,4 +40,9 @@
 .heading1 {
     animation: slideInLeft 1s ease-in both;
     font-size: 400%;
+    font-weight: bold;
+}
+
+p{
+    font-size: 150%;
 }
