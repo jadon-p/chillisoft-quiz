@@ -12,3 +12,7 @@ function googleLogin(){
     })
     .catch(console.log)
 }
+
+function emailLogin(){
+    
+}

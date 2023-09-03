@@ -1,10 +1,14 @@
-.homeDiv {
-    background-color: #56BDEC;
+a{
+    text-decoration: none;
     color:white;
-    font-family:monospace;
-    text-align: center;
-    height: 96vh;
-    width: 98.5vw;
+}
+
+a:hover{
+    color: #AAD4EE;
+}
+
+body{ 
+    margin:0;
 }
 
 button {
@@ -28,21 +32,50 @@ button:hover{
     border-color: #AAD4EE;
 }
 
-@keyframes slideInLeft {
-    from {
-        transform: translateX(-300px);
-    }
-    to {
-        transform: translateX(0);
-    }
+.childHomeDiv{
+    font-family:monospace;
+    position: absolute;
+    padding:10px;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    border: 2px solid;
+    box-shadow: 0 10px 15px rgba(255, 255, 255, 0.781);
 }
 
 .heading1 {
-    animation: slideInLeft 1s ease-in both;
+    animation: glow 2500ms linear infinite 2000ms;
     font-size: 400%;
     font-weight: bold;
 }
 
-p{
-    font-size: 150%;
+.homeDiv {
+    background-color: #56BDEC;
+    color:white;
+    margin-left: 1vw;
+    margin-right:1vw;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    position:relative;
+    text-align: center;
+    height: 98vh;
+    width: 98vw;
+}
+
+input {
+    color:white;
+    font-size: 125%;
+    font-family:monospace;
+    border: 1px solid;
+    box-shadow: 0 1px 5px rgba(255, 255, 255, 0.781);
+}
+
+@keyframes glow {
+    40% {
+      text-shadow: 0 0 8px #fff;
+    }
+  }
+
+::placeholder{
+    color:#56BDEC;
 }
