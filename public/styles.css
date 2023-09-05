@@ -49,6 +49,11 @@ button:hover{
     font-weight: bold;
 }
 
+.heading2 {
+    font-size:150%;
+    font-weight:bolder;
+}
+
 .homeDiv {
     background-color: #56BDEC;
     color:white;
