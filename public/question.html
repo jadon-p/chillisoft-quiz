@@ -28,14 +28,17 @@
   <body>
     <div class = "homeDiv">
       <div class = "childHomeDiv">
-        <div class = "heading1">Instructions</div>
-        <p id="welcomeText">Welcome to the Quiz. Here are the rules.</p>
-        <p>Each question is worth a certain amount of points based on difficulty.</p>
-        <p>Within the time limit, get as many answers you can correct.</p>
-        <p>It's that simple! Click the continue button below to start.</p>
-        <button onclick="location.href='question.html'" style="--clr:#AAD4EE"><span>Continue</span></button>
+        <div class = "heading2" id = "question">Question goes here</div>
+        <div id ="answer-buttons">
+          <button class="btn">Answer 1</button>
+          <button class="btn">Answer 2</button>
+          <button class="btn">Answer 3</button>
+          <button class="btn">Answer 4</button>
+        </div>
+        <button id = "next-btn" onclick="" style="--clr:#AAD4EE"><span>Continue</span></button>
+        <button id = "quit-btn" onclick="" style="--clr:#AAD4EE"><span>Quit</span></button>
       </div>
     </div>
-
+    <script src = "question.js"></script>
   </body>
 </html>
