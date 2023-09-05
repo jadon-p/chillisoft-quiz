@@ -24,12 +24,30 @@ button {
     border-style: solid;
 }
 
-button:hover{
+button:hover:not([disabled]){
     letter-spacing: 0.25em;
     background: var(--clr);
     color: white;
     box-shadow: 0 0 35px var(--clr);
     border-color: #AAD4EE;
+}
+
+button:disabled{
+    cursor: no-drop;
+}
+
+input {
+    color:#56BDEC;
+    font-size: 125%;
+    font-family:monospace;
+    border: 1px solid;
+    box-shadow: 0 1px 5px rgba(255, 255, 255, 0.781);
+}
+
+.btn{
+    width: 100%;
+    margin:10px 0px;
+    text-align: left;
 }
 
 .childHomeDiv{
@@ -43,6 +61,11 @@ button:hover{
     box-shadow: 0 10px 15px rgba(255, 255, 255, 0.781);
 }
 
+.correct{
+    background-color: #99c455;
+    color:white;
+}
+
 .heading1 {
     animation: glow 2500ms linear infinite 2000ms;
     font-size: 400%;
@@ -50,6 +73,11 @@ button:hover{
 }
 
 .heading2 {
+    font-size: 400%;
+    font-weight: bold;
+}
+
+.heading3 {
     font-size:150%;
     font-weight:bolder;
 }
@@ -67,12 +95,19 @@ button:hover{
     width: 98vw;
 }
 
-input {
-    color:#56BDEC;
-    font-size: 125%;
-    font-family:monospace;
-    border: 1px solid;
-    box-shadow: 0 1px 5px rgba(255, 255, 255, 0.781);
+.incorrect{
+    background-color: #d80c55;
+    color:white;
+}
+
+#next-btn{
+    margin-top: 10px;
+    width:100%;
+}
+
+#quit-btn{
+    margin-top: 10px;
+    width:100%;
 }
 
 @keyframes glow {
