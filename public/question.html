@@ -28,17 +28,17 @@
   <body>
     <div class = "homeDiv">
       <div class = "childHomeDiv">
-        <div class = "heading2" id = "question">Question goes here</div>
-        <div id ="answer-buttons">
-          <button class="btn">Answer 1</button>
-          <button class="btn">Answer 2</button>
-          <button class="btn">Answer 3</button>
-          <button class="btn">Answer 4</button>
+          <div class="heading2" id="question">Question goes here</div>
+        <div id="answer-buttons">
+          <!-- Answer buttons will be dynamically generated here -->
         </div>
-        <button id = "next-btn" onclick="" style="--clr:#AAD4EE"><span>Continue</span></button>
-        <button id = "quit-btn" onclick="" style="--clr:#AAD4EE"><span>Quit</span></button>
+      </div>
+      <div class="quiz-controls">
+        <button id="next-btn" style="--clr:#AAD4EE"><span>Continue</span></button>
+        <button id="quit-btn" onclick="quitQuiz()" style="--clr:#AAD4EE"><span>Quit</span></button>
       </div>
     </div>
+  </div>
     <script src = "question.js"></script>
   </body>
 </html>
