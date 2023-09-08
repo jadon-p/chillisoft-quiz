@@ -53,12 +53,13 @@ input {
 .childHomeDiv{
     font-family:monospace;
     position: absolute;
-    padding:10px;
+    padding:30px;
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
     border: 2px solid;
     box-shadow: 0 10px 15px rgba(255, 255, 255, 0.781);
+    background-color: #56BDEC;
 }
 
 .correct{
@@ -93,6 +94,16 @@ input {
     text-align: center;
     height: 98vh;
     width: 98vw;
+}
+
+.imgDiv{    
+    position: absolute;
+    margin-left: 1vw;
+    margin-right:1vw;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    height:96vh;
+    width:96vw;
 }
 
 .incorrect{
