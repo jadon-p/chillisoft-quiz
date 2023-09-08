@@ -261,6 +261,7 @@ const questions = [
             { text: "To prevent websites from tracking your activities", correct: false },
         ]
     },
+    {
 	        question: "Why is using a password manager recommended?",
         answers: [
             { text: "To avoid using any passwords at all", correct: false },
