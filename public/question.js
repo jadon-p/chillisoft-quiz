@@ -344,6 +344,22 @@ const questions = [
     },
 ];
 
+
+// Shuffle function to randomize the order of questions
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array; // Add this line to return the shuffled array
+}
+
+
+// Shuffle the questions array
+shuffle(questions);
+
+const selectedQuestions = questions.slice(0, 10); // Select the first 10 questions
+
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
@@ -352,19 +368,20 @@ const quitButton = document.getElementById("quit-btn");
 let currentQuestionIndex = 0;
 let score = 0;
 
-function startQuiz(){
+function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
-    nextButton.innerHTML="Continue";
-    quitButton.innerHTML="Quit";
-    showQuestion();
+    showQuestion(); // Call showQuestion() to display the first question
+    nextButton.style.display = "none"; // Hide the "Next" button initially
+    quitButton.style.display = "block"; // Show the "Quit" button
 }
 
+startQuiz(); 
 function showQuestion(){
     resetState();
-    let currentQuestion = questions[currentQuestionIndex];
+    let currentQuestion = selectedQuestions[currentQuestionIndex]; // Use selectedQuestions array
     let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML= questionNo + ". " + currentQuestion.question;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
@@ -377,7 +394,6 @@ function showQuestion(){
         button.addEventListener("click", selectAnswer);
     });
 }
-
 function resetState(){
     nextButton.style.display = "none";
     quitButton.style.display = "none";
