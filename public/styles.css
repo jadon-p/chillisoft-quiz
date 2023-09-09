@@ -74,7 +74,7 @@ input {
 }
 
 .heading2 {
-    font-size: 400%;
+    font-size: 200%;
     font-weight: bold;
 }
 
@@ -119,6 +119,8 @@ input {
 #quit-btn{
     margin-top: 10px;
     width:100%;
+    background-color: #d80c55;
+    color:white;
 }
 
 @keyframes glow {
