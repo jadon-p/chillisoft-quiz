@@ -1,6 +1,7 @@
 a{
     text-decoration: none;
-    color:white;
+    color:#56BDEC;
+    position: relative;
 }
 
 a:hover{
@@ -40,8 +41,9 @@ input {
     color:#56BDEC;
     font-size: 125%;
     font-family:monospace;
-    border: 1px solid;
-    box-shadow: 0 1px 5px rgba(255, 255, 255, 0.781);
+    border: none;
+    border-bottom: 2px solid #56BDEC;
+    outline:none;
 }
 
 .btn{
@@ -59,12 +61,36 @@ input {
     transform: translate(-50%, -50%);
     border: 2px solid;
     box-shadow: 0 10px 15px rgba(255, 255, 255, 0.781);
+    background-color: white;
+    color:#56BDEC;
+}
+
+.childQuestionDiv{
+    font-family:monospace;
+    position: absolute;
+    padding:30px;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    border: 2px solid;
+    box-shadow: 0 10px 15px rgba(255, 255, 255, 0.781);
     background-color: #56BDEC;
 }
 
 .correct{
     background-color: #99c455;
     color:white;
+}
+
+.footer{
+    background-color: #56BDEC;
+    width:100vw;
+    height:5vh;
+    font-family:monospace;
+    color:white;
+    text-align: center;
+    font-size:2vh;
+    padding-top:2.5vh;
 }
 
 .heading1 {
@@ -83,6 +109,12 @@ input {
     font-weight:bolder;
 }
 
+.heading4 {
+    animation: blueGlow 2500ms linear infinite 2000ms;
+    font-size: 400%;
+    font-weight: bold;
+}
+
 .homeDiv {
     background-color: #56BDEC;
     color:white;
@@ -96,18 +128,58 @@ input {
     width: 98vw;
 }
 
+html {
+    overflow-x:hidden ;
+}
+
 .imgDiv{    
-    position: absolute;
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    position: relative;
     margin-left: 1vw;
     margin-right:1vw;
     margin-top: 1vh;
     margin-bottom: 1vh;
-    height:96vh;
-    width:96vw;
+    height: 98vh;
+    width: 98vw;
+}
+
+.instructionDiv{
+    background-color: white;
+    color:#56BDEC;
+    text-align: center;
+    padding-bottom: 30px;
+    font-family:monospace;
 }
 
 .incorrect{
     background-color: #d80c55;
+    color:white;
+}
+
+.loginHeading{
+    animation: blueGlow 2500ms linear infinite 2000ms;
+    font-size: 400%;
+    font-weight: bold;
+    color:#56BDEC;
+}
+
+.title{
+    position: absolute;
+    top: 45vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 8s;
+    font-family: monospace;
+    font-weight: bold;
+    text-align: center;
+    font-size: 40vw;
+    color: white;
+}
+
+#btn2{
+    background-color: #56BDEC;
     color:white;
 }
 
@@ -123,9 +195,38 @@ input {
     color:white;
 }
 
+#welcomeText {
+    font-size: 16px;
+}
+
+#whiteHyperLink{
+    color:white;
+    text-decoration: none;
+}
+
+#whiteHyperLink:hover{
+    color: #AAD4EE;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+  
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 @keyframes glow {
     40% {
       text-shadow: 0 0 8px #fff;
+    }
+  }
+
+@keyframes blueGlow {
+    40% {
+      text-shadow: 0 0 8px #56BDEC;
     }
   }
 

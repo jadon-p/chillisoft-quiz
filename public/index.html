@@ -26,25 +26,20 @@
 
   </head>
   <body>
-    <div class = "homeDiv">
       <div class = "imgDiv">
         <img src="img/eset_1.png" height="100%" width ="100%">
       </div>
-      <div class = "childHomeDiv">
-        <div class = "heading1">Welcome to the Quiz</div><br>
-        <a href="createAcc.html">New Here? Join Now!</a> <br>
-        <p>Already have and Account? Login Below</p>
-        <input type="text" id = "email" placeholder="Email"> <br><br>
-        <input type="password" id = "password" placeholder="Password"><br>
-        <a href="changePwd.html"> Forgot Password?</a> <br>
-        <p id ="loginError"></p> <br>
-        <button onclick="emailLogin()" style="--clr:#AAD4EE"><span>Continue</span></button>
-        <p>Or</p>
-        <button onclick="googleLogin()" style="--clr:#AAD4EE"><span>Log in with Google</span></button><br><br>
-        <a href="faq.html"> Having trouble logging in? Click Here</a>
+      <div class = "title">QUIZ</div>
+      <div class =  "instructionDiv">
+        <div class = "heading4">Instructions</div>
+        <p id="welcomeText">Welcome to the Quiz. Here are the rules.</p>
+        <p id="welcomeText">Each question is worth a certain amount of points based on difficulty.</p>
+        <p id="welcomeText">Within the time limit, get as many answers you can correct.</p>
+        <p id="welcomeText">It's that simple! Click the continue button below to start.</p>
+        <button id = "btn2" onclick="location.href='login.html'" style="--clr:#AAD4EE"><span>Continue</span></button>
       </div>
-    </div>
-
-    <script src="app.js"> </script>
+      <div class = "footer">
+        <a id = "whiteHyperLink" href="https://www.eset.com/nz/">Click here to learn more about ESET</a> <br>
+      </div>
   </body>
 </html>
