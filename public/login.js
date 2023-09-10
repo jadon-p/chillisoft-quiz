@@ -8,7 +8,7 @@ function googleLogin(){
 
     .then(result=>{
         const user = result.user;
-        window.location.href="instructions.html";
+        window.location.href="startQuiz.html";
     })
     .catch(console.log)
 }
@@ -21,7 +21,7 @@ function emailLogin() {
     .then((userCredential) => {
         var user = userCredential.user;
         if (user.emailVerified){
-            window.location.href="instructions.html";
+            window.location.href="startQuiz.html";
         } else {
             document.getElementById('loginError').innerText = "Email is not verified";
         }

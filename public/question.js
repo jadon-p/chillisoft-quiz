@@ -354,11 +354,12 @@ function shuffle(array) {
   return array; // Add this line to return the shuffled array
 }
 
-
 // Shuffle the questions array
 shuffle(questions);
 
-const selectedQuestions = questions.slice(0, 10); // Select the first 10 questions
+const NUM_OF_QUESTIONS = 10;
+
+const selectedQuestions = questions.slice(0, NUM_OF_QUESTIONS); // Select the first 10 questions
 
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
@@ -376,7 +377,7 @@ function startQuiz() {
     quitButton.style.display = "block"; // Show the "Quit" button
 }
 
-startQuiz(); 
+
 function showQuestion(){
     resetState();
     let currentQuestion = selectedQuestions[currentQuestionIndex]; // Use selectedQuestions array
@@ -393,6 +394,7 @@ function showQuestion(){
         }
         button.addEventListener("click", selectAnswer);
     });
+    quitButton.style.display = "block"; // Show the "Quit" button
 }
 function resetState(){
     nextButton.style.display = "none";
@@ -422,7 +424,7 @@ function selectAnswer(e){
 
 function showScore(){
     resetState();
-    questionElement.innerHTML = "You scored " + score + " out of " + questions.length;
+    questionElement.innerHTML = "You scored " + score + " out of 10";
     nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
     quitButton.style.display = "block";
@@ -430,7 +432,7 @@ function showScore(){
 
 function handleNextButton(){
     currentQuestionIndex++;
-    if(currentQuestionIndex < questions.length){
+    if(currentQuestionIndex < NUM_OF_QUESTIONS){
         showQuestion();
     } else {
         showScore();
@@ -438,7 +440,7 @@ function handleNextButton(){
 }
 
 nextButton.addEventListener("click",()=>{
-    if(currentQuestionIndex < questions.length){
+    if(currentQuestionIndex < NUM_OF_QUESTIONS){
         handleNextButton();
     } else {
         startQuiz();
