@@ -37,6 +37,10 @@ button:disabled{
     cursor: no-drop;
 }
 
+html {
+    overflow-x:hidden ;
+}
+
 input {
     color:#56BDEC;
     font-size: 125%;
@@ -46,10 +50,15 @@ input {
     outline:none;
 }
 
-.btn{
-    width: 100%;
-    margin:10px 0px;
-    text-align: left;
+.altButton{
+    background-color: #56BDEC;
+    color:white;
+}
+
+.altHeading {
+    animation: glow 2500ms linear infinite 2000ms;
+    font-size: 200%;
+    font-weight: bold;
 }
 
 .childHomeDiv{
@@ -82,34 +91,7 @@ input {
     color:white;
 }
 
-.footer{
-    background-color: #56BDEC;
-    width:100vw;
-    height:5vh;
-    font-family:monospace;
-    color:white;
-    text-align: center;
-    font-size:2vh;
-    padding-top:2.5vh;
-}
-
-.heading1 {
-    animation: glow 2500ms linear infinite 2000ms;
-    font-size: 400%;
-    font-weight: bold;
-}
-
-.heading2 {
-    font-size: 200%;
-    font-weight: bold;
-}
-
-.heading3 {
-    font-size:150%;
-    font-weight:bolder;
-}
-
-.heading4 {
+.heading{
     animation: blueGlow 2500ms linear infinite 2000ms;
     font-size: 400%;
     font-weight: bold;
@@ -126,10 +108,6 @@ input {
     text-align: center;
     height: 98vh;
     width: 98vw;
-}
-
-html {
-    overflow-x:hidden ;
 }
 
 .imgDiv{    
@@ -157,30 +135,30 @@ html {
     color:white;
 }
 
-.loginHeading{
-    animation: blueGlow 2500ms linear infinite 2000ms;
-    font-size: 400%;
-    font-weight: bold;
-    color:#56BDEC;
+.questionBtn{
+    width: 100%;
+    margin:10px 0px;
+    text-align: left;
 }
 
-.title{
-    position: absolute;
-    top: 45vh;
-    left: 50vw;
-    transform: translate(-50%, -50%);
-    animation: fadeIn 5s;
-    -webkit-animation: fadeIn 8s;
-    font-family: monospace;
-    font-weight: bold;
-    text-align: center;
-    font-size: 40vw;
-    color: white;
+.subHeading {
+    font-size:150%;
+    font-weight:bolder;
 }
 
-#btn2{
+.welcomeText {
+    font-size: 16px;
+}
+
+#footer{
     background-color: #56BDEC;
+    width:100vw;
+    height:5vh;
+    font-family:monospace;
     color:white;
+    text-align: center;
+    font-size:2vh;
+    padding-top:2.5vh;
 }
 
 #next-btn{
@@ -195,8 +173,18 @@ html {
     color:white;
 }
 
-#welcomeText {
-    font-size: 16px;
+#title{
+    position: absolute;
+    top: 45vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 8s;
+    font-family: monospace;
+    font-weight: bold;
+    text-align: center;
+    font-size: 40vw;
+    color: white;
 }
 
 #whiteHyperLink{

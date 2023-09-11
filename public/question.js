@@ -382,12 +382,12 @@ function showQuestion(){
     resetState();
     let currentQuestion = selectedQuestions[currentQuestionIndex]; // Use selectedQuestions array
     let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question +"<br><br>";
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
-        button.classList.add("btn");
+        button.classList.add("questionBtn");
         answerButtons.appendChild(button);
         if(answer.correct) {
             button.dataset.correct = answer.correct;
