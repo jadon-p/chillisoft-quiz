@@ -26,8 +26,11 @@
 
   </head>
   <body>
-    <div class = "homeDiv">
-      <div class = "childQuestionDiv">
+    <div class="homeDiv">
+      <div class="childQuestionDiv">
+          <!-- Timer Display -->
+          <div id="timer" style="font-size: 24px; font-weight: bold; color: #333; margin-bottom: 20px;">00:00</div>
+          
           <div class="altHeading" id="question">Question goes here</div>
         <div id="answer-buttons">
           <!-- Answer buttons will be dynamically generated here -->
@@ -36,7 +39,6 @@
         <button id="quit-btn" onclick="quitQuiz()" style="--clr:#AAD4EE"><span>Quit Quiz</span></button>
       </div>
     </div>
-  </div>
-    <script src = "question.js"></script>
+    <script src="question.js"></script>
   </body>
 </html>
