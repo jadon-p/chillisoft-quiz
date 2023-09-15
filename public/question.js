@@ -436,10 +436,14 @@ let score = 0;
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
+    document.getElementById("leaderboard").style.display = "none"; // Hide the leaderboard
+    nextButton.innerHTML = "<span>Continue</span>"; // Reset the text of the nextButton
     showQuestion(); // Call showQuestion() to display the first question
     nextButton.style.display = "none"; // Hide the "Next" button initially
     quitButton.style.display = "block"; // Show the "Quit" button
 }
+
+
 
 
 function showQuestion(){
@@ -450,7 +454,10 @@ function showQuestion(){
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question +"<br><br>";
 
-    currentQuestion.answers.forEach(answer => {
+    // Shuffle the answers for the current question
+    let shuffledAnswers = shuffle([...currentQuestion.answers]);
+
+    shuffledAnswers.forEach(answer => {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("questionBtn");
@@ -462,11 +469,18 @@ function showQuestion(){
     });
     quitButton.style.display = "block"; // Show the "Quit" button
 }
+
+
 function resetState(){
     nextButton.style.display = "none";
     quitButton.style.display = "none";
     while (answerButtons.firstChild){
         answerButtons.removeChild(answerButtons.firstChild);
+    }
+    
+    const leaderboard = document.querySelector(".leaderboard");
+    if (leaderboard) {
+        leaderboard.remove();
     }
 }
 
@@ -516,10 +530,56 @@ function selectAnswer(e){
 function showScore(){
     resetState();
     questionElement.innerHTML = "You scored " + Math.round(score) + " out of 100";
+
+    // Create the leaderboard
+    const leaderboard = document.createElement("div");
+    leaderboard.classList.add("leaderboard");
+    leaderboard.innerHTML = "<h3>Leaderboard</h3>";
+
+    const categories = [
+        { range: [75, 100], label: "Expert", class: "expert" },
+        { range: [50, 75], label: "Advanced", class: "advanced" },
+        { range: [25, 50], label: "Intermediate", class: "intermediate" },
+        { range: [0, 25], label: "Beginner", class: "beginner" }
+    ];
+    
+    categories.forEach(category => {
+        const categoryElement = document.createElement("div");
+        categoryElement.classList.add("category");
+        categoryElement.classList.add(category.class);
+        if (score >= category.range[0] && score < category.range[1]) {
+            categoryElement.classList.add("current-player");
+        }
+        categoryElement.innerHTML = `${category.range[0]} - ${category.range[1]}: ${category.label}`;
+        leaderboard.appendChild(categoryElement);
+    });
+
+    // Highlight the player's rank
+    let rankElement;
+    if (score >= 75) {
+        rankElement = leaderboard.querySelector(".expert");
+    } else if (score >= 50) {
+        rankElement = leaderboard.querySelector(".advanced");
+    } else if (score >= 25) {
+        rankElement = leaderboard.querySelector(".intermediate");
+    } else {
+        rankElement = leaderboard.querySelector(".beginner");
+    }
+
+    if (rankElement) {
+        rankElement.classList.add("highlighted-rank");
+    }
+
+
+    const childQuestionDiv = document.querySelector(".childQuestionDiv");
+    childQuestionDiv.appendChild(leaderboard);
+
     nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
     quitButton.style.display = "block";
 }
+
+
 
 function handleNextButton(){
     currentQuestionIndex++;

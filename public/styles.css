@@ -173,6 +173,13 @@ input {
     color:white;
 }
 
+.highlighted-rank {
+    background-color: #AAD4EE;
+    color: white;
+    font-weight: bold;
+}
+
+
 #title{
     position: absolute;
     top: 45vh;
