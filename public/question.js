@@ -527,7 +527,7 @@ function selectAnswer(e){
     nextButton.style.display = "block";
 }
 
-function showScore(){
+async function showScore() {
     resetState();
     questionElement.innerHTML = "You scored " + Math.round(score) + " out of 100";
 
@@ -536,48 +536,44 @@ function showScore(){
     leaderboard.classList.add("leaderboard");
     leaderboard.innerHTML = "<h3>Leaderboard</h3>";
 
-    const categories = [
-        { range: [75, 100], label: "Expert", class: "expert" },
-        { range: [50, 75], label: "Advanced", class: "advanced" },
-        { range: [25, 50], label: "Intermediate", class: "intermediate" },
-        { range: [0, 25], label: "Beginner", class: "beginner" }
-    ];
+    // Add a loading indicator
+    const loadingIndicator = document.createElement("div");
+    loadingIndicator.classList.add("loading-indicator");
+    loadingIndicator.innerHTML = "Loading leaderboard...";
+    leaderboard.appendChild(loadingIndicator);
+
     
-    categories.forEach(category => {
-        const categoryElement = document.createElement("div");
-        categoryElement.classList.add("category");
-        categoryElement.classList.add(category.class);
-        if (score >= category.range[0] && score < category.range[1]) {
-            categoryElement.classList.add("current-player");
-        }
-        categoryElement.innerHTML = `${category.range[0]} - ${category.range[1]}: ${category.label}`;
-        leaderboard.appendChild(categoryElement);
-    });
-
-    // Highlight the player's rank
-    let rankElement;
-    if (score >= 75) {
-        rankElement = leaderboard.querySelector(".expert");
-    } else if (score >= 50) {
-        rankElement = leaderboard.querySelector(".advanced");
-    } else if (score >= 25) {
-        rankElement = leaderboard.querySelector(".intermediate");
-    } else {
-        rankElement = leaderboard.querySelector(".beginner");
-    }
-
-    if (rankElement) {
-        rankElement.classList.add("highlighted-rank");
-    }
-
+    nextButton.innerHTML = "Play Again";
+    nextButton.style.display = "block";
+    quitButton.style.display = "block";
 
     const childQuestionDiv = document.querySelector(".childQuestionDiv");
     childQuestionDiv.appendChild(leaderboard);
 
-    nextButton.innerHTML = "Play Again";
-    nextButton.style.display = "block";
-    quitButton.style.display = "block";
+    await saveUserScore(Math.round(score));
+
+    // Fetch top scores
+    const topScores = await getTopScores();
+
+    // Remove the loading indicator
+    loadingIndicator.remove();
+
+    topScores.forEach(entry => {
+        console.log("Processing entry:", entry);
+        if (entry.username && entry.score) {
+            const scoreElement = document.createElement("div");
+            scoreElement.classList.add("score-entry");
+            scoreElement.innerHTML = `${entry.username}: ${entry.score}`;
+            if (entry.userId === firebase.auth().currentUser.uid) {
+                scoreElement.classList.add("current-player");
+            }
+            leaderboard.appendChild(scoreElement);
+        }
+    });
+
 }
+
+
 
 
 
@@ -605,3 +601,45 @@ function quitQuiz() {
 }
 
 startQuiz();
+
+async function saveUserScore(newScore) {
+    const userId = firebase.auth().currentUser.uid;
+    const db = firebase.firestore();
+    const userRef = db.collection('Scores').doc(userId);
+
+    // Fetch the current score from Firestore
+    const doc = await userRef.get();
+
+    // If the user doesn't have a score yet or the new score is greater than the current score, update it
+    if (!doc.exists || newScore > doc.data().score) {
+        return userRef.set({
+            userId: userId,
+            username: firebase.auth().currentUser.displayName,
+            score: newScore
+        }, { merge: true });
+    }
+}
+
+
+
+function getTopScores() {
+    const db = firebase.firestore();
+    return db.collection('Scores')
+        .orderBy('score', 'desc')
+        .limit(10)
+        .get()
+        .then(snapshot => {
+            snapshot.forEach(doc => {
+                console.log(doc.id, " => ", doc.data()); // Log each document's ID and data for debugging
+            });
+            return snapshot.docs.map(doc => doc.data());
+        });
+}
+
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        console.log("User is logged in:", user);
+    } else {
+        console.log("No user is logged in.");
+    }
+});
