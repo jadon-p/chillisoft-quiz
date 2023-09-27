@@ -221,6 +221,12 @@ input {
     font-weight: bold;
 }
 
+.personal-best-message {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
 
 #title{
     position: absolute;

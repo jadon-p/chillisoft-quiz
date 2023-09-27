@@ -531,18 +531,19 @@ async function showScore() {
     resetState();
     questionElement.innerHTML = "You scored " + Math.round(score) + " out of 100";
 
+    // Fetch the user's previous best score
+    const previousBestScore = await getUserScore(firebase.auth().currentUser.uid);
+
     // Create the leaderboard
     const leaderboard = document.createElement("div");
     leaderboard.classList.add("leaderboard");
     leaderboard.innerHTML = "<h3>Leaderboard</h3>";
 
-    // Add a loading indicator
     const loadingIndicator = document.createElement("div");
     loadingIndicator.classList.add("loading-indicator");
     loadingIndicator.innerHTML = "Loading leaderboard...";
     leaderboard.appendChild(loadingIndicator);
 
-    
     nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
     quitButton.style.display = "block";
@@ -552,30 +553,76 @@ async function showScore() {
 
     await saveUserScore(Math.round(score));
 
-    // Fetch top scores
-    const topScores = await getTopScores();
+    // Fetch top 5 scores
+    let topScores = await getTopScores(5);
+
+    // Check if user's current score is in the top 5
+    let isInTop5 = topScores.some(entry => entry.userId === firebase.auth().currentUser.uid && entry.score === Math.round(score));
+
+    // If user's current score is not in the top 5, add it to the list
+    if (!isInTop5) {
+        topScores.push({
+            userId: firebase.auth().currentUser.uid,
+            username: firebase.auth().currentUser.displayName,
+            score: Math.round(score)
+        });
+    }
+
+    // Sort the scores
+    topScores.sort((a, b) => b.score - a.score);
 
     // Remove the loading indicator
     loadingIndicator.remove();
 
+    // Display the scores on the leaderboard
     topScores.forEach(entry => {
-        console.log("Processing entry:", entry);
-        if (entry.username && entry.score) {
-            const scoreElement = document.createElement("div");
-            scoreElement.classList.add("score-entry");
-            scoreElement.innerHTML = `${entry.username}: ${entry.score}`;
-            if (entry.userId === firebase.auth().currentUser.uid) {
-                scoreElement.classList.add("current-player");
-            }
-            leaderboard.appendChild(scoreElement);
+        const scoreElement = document.createElement("div");
+        scoreElement.classList.add("score-entry");
+        scoreElement.innerHTML = `${entry.username}: ${entry.score}`;
+        if (entry.userId === firebase.auth().currentUser.uid && entry.score === Math.round(score)) {
+            scoreElement.classList.add("current-player");
         }
+        leaderboard.appendChild(scoreElement);
     });
 
+    // Display a congratulations message if the user scores a personal best
+    if (!previousBestScore || score > previousBestScore.score) {
+        const personalBestMessage = document.createElement("div");
+        personalBestMessage.classList.add("personal-best-message");
+        personalBestMessage.innerHTML = "Congratulations! You've achieved a new personal best!";
+        questionElement.appendChild(personalBestMessage);
+    }
 }
 
 
 
 
+
+// Fetches the top N scores
+function getTopScores(limit) {
+    const db = firebase.firestore();
+    return db.collection('Scores')
+        .orderBy('score', 'desc')
+        .limit(limit)
+        .get()
+        .then(snapshot => {
+            return snapshot.docs.map(doc => doc.data());
+        });
+}
+
+// Fetches the score of a specific user
+function getUserScore(userId) {
+    const db = firebase.firestore();
+    return db.collection('Scores').doc(userId)
+        .get()
+        .then(doc => {
+            if (doc.exists) {
+                return doc.data();
+            } else {
+                return null;
+            }
+        });
+}
 
 function handleNextButton(){
     currentQuestionIndex++;
@@ -618,22 +665,6 @@ async function saveUserScore(newScore) {
             score: newScore
         }, { merge: true });
     }
-}
-
-
-
-function getTopScores() {
-    const db = firebase.firestore();
-    return db.collection('Scores')
-        .orderBy('score', 'desc')
-        .limit(10)
-        .get()
-        .then(snapshot => {
-            snapshot.forEach(doc => {
-                console.log(doc.id, " => ", doc.data()); // Log each document's ID and data for debugging
-            });
-            return snapshot.docs.map(doc => doc.data());
-        });
 }
 
 firebase.auth().onAuthStateChanged(user => {
