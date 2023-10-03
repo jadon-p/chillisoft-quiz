@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded",event=> {
-    const app = firebase.app();
-})
+// document.addEventListener("DOMContentLoaded",event=> {
+//     const app = firebase.app();
+// })
 
 function googleLogin(){
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -71,3 +71,11 @@ function changePassword(){
     document.getElementById('passwordError').innerText = errorMessage;
   });
 } 
+
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        console.log("User is logged in:", user);
+    } else {
+        console.log("No user is logged in.");
+    }
+});
