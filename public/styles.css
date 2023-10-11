@@ -41,6 +41,11 @@ html {
     overflow-x:hidden ;
 }
 
+hr.solid {
+    border-top: 1px solid #fff;
+    margin-top: 10px;
+}
+
 input {
     color:#56BDEC;
     font-size: 125%;
@@ -89,6 +94,7 @@ input {
 .correct{
     background-color: #99c455;
     color:white;
+    border-color:#99c455;
 }
 
 .heading{
@@ -133,6 +139,7 @@ input {
 .incorrect{
     background-color: #d80c55;
     color:white;
+    border-color: #d80c55; ;
 }
 
 .questionBtn{
@@ -213,6 +220,7 @@ input {
     width:100%;
     background-color: #d80c55;
     color:white;
+    border-color: #d80c55;
 }
 
 .highlighted-rank {
@@ -226,7 +234,37 @@ input {
     margin-top: 10px;
 }
 
+#questionNum{
+    font-size:200%;
+    font-weight: bold;
+    font-family: monospace;
+    display: inline-block;
+    padding-right:15vw;
+}
 
+#timer{
+    color:white;
+    background-color: #56BDEC;
+    width:fit-content;
+    height: fit-content;
+    border-radius: 12px;
+    margin-left: 10px;
+    padding-left:5px;
+    padding-right:5px;
+    float:right;
+}
+
+#timerText{
+    font-size: 200%;
+    font-weight: bold;
+    color:#56BDEC;
+    background-color: #fff;
+    width:fit-content;
+    border-radius: 12px;
+    padding: 5px 5px;
+    height: fit-content;
+    display: inline-block;
+}
 
 #title{
     position: absolute;

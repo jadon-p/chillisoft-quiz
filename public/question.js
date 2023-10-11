@@ -426,9 +426,11 @@ const NUM_OF_QUESTIONS = 10;
 const selectedQuestions = questions.slice(0, NUM_OF_QUESTIONS); // Select the first 10 questions
 
 const questionElement = document.getElementById("question");
+const questionNumElement = document.getElementById("questionNum");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 const quitButton = document.getElementById("quit-btn");
+
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -443,16 +445,14 @@ function startQuiz() {
     quitButton.style.display = "block"; // Show the "Quit" button
 }
 
-
-
-
 function showQuestion(){
     startTimer(); // Start the timer when a question is displayed
     timerElement.innerText = "00:00"; // Reset the timer display
     resetState();
     let currentQuestion = selectedQuestions[currentQuestionIndex]; // Use selectedQuestions array
     let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML = questionNo + ". " + currentQuestion.question +"<br><br>";
+    questionElement.innerHTML = currentQuestion.question +"<br><br>";
+    questionNumElement.innerHTML = "Question " + questionNo+" of "+NUM_OF_QUESTIONS;
 
     // Shuffle the answers for the current question
     let shuffledAnswers = shuffle([...currentQuestion.answers]);
@@ -529,6 +529,7 @@ function selectAnswer(e){
 
 async function showScore() {
     resetState();
+    questionNumElement.innerHTML = "Finished";
     questionElement.innerHTML = "You scored " + Math.round(score) + " out of 100";
 
     // Fetch the user's previous best score
